@@ -44,6 +44,14 @@ function update() {
         placeFood();
     }
 
+    for(let i = snakeBody.length-1; i > 0; i--) {
+        snakeBody[i] = snakeBody[i-1];
+    }
+
+    if(snakeBody.length) {
+        snakeBody[0] = [snakeX, snakeY];
+    }
+
     context.fillStyle = "lime";
     snakeX += speedX * blockSize;
     snakeY += speedY * blockSize;
@@ -79,10 +87,10 @@ function changeDirection(e) {
     } else if(e.code == "ArrowLeft" && speedX != 1) {
         speedX = -1;
         speedY = 0;
-    
+    }
 }
 
 function placeFood() {
     foodX = Math.floor(Math.random() * columns) * blockSize;
     foodY = Math.floor(Math.random() * rows) * blockSize;
-}}
+}
